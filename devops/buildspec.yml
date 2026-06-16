@@ -9,7 +9,7 @@ phases:
     commands:
       - echo Installing dependencies...
       # Install for CodeBuild/Test execution
-      - pip install -r requirements.txt
+      - pip install -r layers/common/requirements.txt
 
       # Install into Lambda Layer
       - pip install -r layers/common/requirements.txt -t layers/common/python
