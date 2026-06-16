@@ -22,8 +22,8 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: user-registration-function
-      CodeUri: ../src/register
-      Handler: index.lambda_handler
+      CodeUri: ../src
+      Handler: register.index.lambda_handler
 
       Events:
         Register:

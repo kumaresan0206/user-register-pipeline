@@ -1,7 +1,7 @@
 import json
 
-from validator import validate_data
-from response import success_response, error_response
+from .validator import validate_data
+from .response import success_response, error_response
 
 
 def lambda_handler(event, context):
