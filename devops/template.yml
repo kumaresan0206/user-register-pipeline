@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Description: User Registration API
+
+Globals:
+  Function:
+    Runtime: python3.13
+    Timeout: 10
+
+Resources:
+
+  RegistrationApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: dev
+      OpenApiVersion: 3.0.1
+      Name: user-registration-api
+
+
+  RegisterFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: user-registration-function
+      CodeUri: ../src/register
+      Handler: index.lambda_handler
+
+      Events:
+        Register:
+          Type: Api
+          Properties:
+            RestApiId: !Ref RegistrationApi
+            Path: /register
+            Method: POST
+
+Outputs:
+
+  ApiEndpoint:
+    Value: !Sub 'https://${RegistrationApi}.execute-api.${AWS::Region}.amazonaws.com/dev/register'
