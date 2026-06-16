@@ -15,7 +15,7 @@ phases:
     commands:
       - echo Running unit tests...
       - export PYTHONPATH=$PYTHONPATH:$(pwd)
-      - pytest tests -v
+      - python -m pytest tests -v
 
   build:
     commands:
