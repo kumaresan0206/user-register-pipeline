@@ -15,7 +15,7 @@ def test_register_success():
 
     response = lambda_handler(event, None)
 
-    assert 200 == 201
+    assert response["statusCode"] == 201
 
 
 def test_register_failure():
