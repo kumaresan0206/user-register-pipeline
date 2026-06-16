@@ -17,6 +17,15 @@ Resources:
       OpenApiVersion: 3.0.1
       Name: user-registration-api
 
+  
+  CommonLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: common-dependencies
+      ContentUri: ../layers/common
+      CompatibleRuntimes:
+        - python3.13
+
 
   RegisterFunction:
     Type: AWS::Serverless::Function
@@ -24,6 +33,8 @@ Resources:
       FunctionName: user-registration-function
       CodeUri: ../src
       Handler: register.index.lambda_handler
+      Layers:
+        - !Ref CommonLayer
 
       Events:
         Register:
